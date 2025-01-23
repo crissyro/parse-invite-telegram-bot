@@ -1,18 +1,21 @@
-from aiogram import Dispatcher, executor
+import asyncio
+from aiogram import Dispatcher
 from config.config import config
-from handlers.start import register_handlers_start
-from handlers.parsing import register_handlers_parsing
-from handlers.inviting import register_handlers_inviting
+from handlers.start import register_start_handler
+from handlers.parsing import register_parsing_handlers
+from handlers.inviting import register_inviting_handlers
+from utils.logger import setup_logger
 
-
-def main():
-    dp = Dispatcher(config.bot, storage=config.storage)
+async def main():
+    logger = setup_logger()
+    logger.info("Starting bot...")
+    dp = Dispatcher(storage=config.storage)
     
-    register_handlers_start(dp)
-    register_handlers_parsing(dp)
-    register_handlers_inviting(dp)
+    register_start_handler(dp)
+    register_parsing_handlers(dp)
+    register_inviting_handlers(dp)
     
-    executor.start_polling(dp, skip_updates=True)
+    await dp.start_polling(config.bot)
 
-if __name__ == '__main__':
-    main()
+if __name__ == "__main__":
+    asyncio.run(main())

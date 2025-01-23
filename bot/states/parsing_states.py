@@ -1,4 +1,4 @@
-from aiogram.dispatcher.filters.state import State, StatesGroup
+from aiogram.fsm.state import State, StatesGroup
 
 class ParsingStates(StatesGroup):
     source_chat = State()

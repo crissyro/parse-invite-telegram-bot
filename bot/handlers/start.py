@@ -1,12 +1,16 @@
 from aiogram import types
+from aiogram.filters import Command
 from config.config import config
 
 async def cmd_start(message: types.Message):
     await message.reply(
-        "Hi! I'm a bot for managing chat participants.\n"
-        "Use /parse to collect users\n"
-        "Use /invite to invite users"
+        "🤖 Бот для управления участниками\n"
+        "➖➖➖➖➖➖➖➖➖➖\n"
+        "🔍 /parse - собрать пользователей\n"
+        "📨 /invite - пригласить пользователей\n"
+        "➖➖➖➖➖➖➖➖➖➖\n"
+        "⚙️ Бот должен быть админом в обоих чатах!"
     )
 
-def register_handlers_start(dp):
-    dp.register_message_handler(cmd_start, commands=['start'])
+def register_start_handler(dp):
+    dp.message.register(cmd_start, Command("start"))
