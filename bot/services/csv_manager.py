@@ -1,5 +1,5 @@
 import csv
-import asyncio
+
 
 async def save_members_to_csv(members: list, filename: str = "members.csv"):
     with open(filename, 'a', newline='', encoding='utf-8') as file:

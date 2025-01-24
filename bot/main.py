@@ -9,11 +9,11 @@ from utils.logger import logger
 async def main():
     logger.info("Starting bot...")
     dp = Dispatcher(storage=config.storage)
-    
+
     register_start_handler(dp)
     register_parsing_handlers(dp)
     register_inviting_handlers(dp)
-    
+
     await dp.start_polling(config.bot)
 
 if __name__ == "__main__":
